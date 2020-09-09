@@ -7,7 +7,7 @@ reuse.
 You can run with:
 
 ```bash
-git clone https://github.com/pyobo/resolver-docker
+git clone https://github.com/pyobo/oohnana-docker
 sh setup.sh
 ```
 
