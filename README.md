@@ -4,6 +4,16 @@ This repository has the Dockerfile and setup necessary to prepare
 a pre-loaded PostgreSQL container and push it back to dockerhub for
 reuse.
 
+This repository completely relies on the [PyOBO](https://github.com/pyobo/pyobo)
+python package for generating the names and alternative identifiers database.
+If there is a special build locally, it is used. Otherwise, it's the names are
+grabbed from 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4020486.svg)](https://doi.org/10.5281/zenodo.4020486)
+and the alternate identifiers from
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4021476.svg)](https://doi.org/10.5281/zenodo.4021476)
+before loading into the PostgreSQL database. For more information, read the blog post at
+https://cthoyt.com/2020/04/18/ooh-na-na.html.
+
 You can run with:
 
 ```bash
