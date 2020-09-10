@@ -21,6 +21,10 @@ git clone https://github.com/pyobo/oohnana-docker
 sh setup.sh
 ```
 
+Finally, the docker images get pushed to https://hub.docker.com/repository/docker/pyobo/oohnana.
+Each one is tagged with the hash of this repository. Maybe in the future that will switch to
+proper versioning.
+
 Tutorials followed to get this far:
 
 - https://nickjanetakis.com/blog/docker-tip-79-saving-a-postgres-database-in-a-docker-image
