@@ -21,5 +21,5 @@ docker container stop $TMPIMAGENAME
 # docker container run -p 5436:5432 --rm -it --name $IMAGENAME $IMAGENAME
 
 docker login
-docker tag $IMAGENAME:TAG cthoyt/$IMAGENAME:$TAG
-docker push cthoyt/$IMAGENAME:$TAG
+docker tag $IMAGENAME:$TAG pyobo/$IMAGENAME:$TAG
+docker push pyobo/$IMAGENAME:$TAG
