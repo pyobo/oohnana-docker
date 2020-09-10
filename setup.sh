@@ -4,17 +4,26 @@
 set -e
 
 HASH=$(git rev-parse HEAD)
-TMPIMAGENAME="oohnana_${HASH:0:10}"
+TAG="${HASH:0:10}"
+TMPIMAGENAME="oohnana_tmp_$TAG"
+POSTGRES_PASSWORD=pyobo
+PORT=5433
+
 IMAGENAME=oohnana
-TAG="1.0.0"
+TEST=""
+
+# Testing environment
+#IMAGENAME=oohnana-test
+#TEST=" --test"
 
 docker image build -t $TMPIMAGENAME .
-docker container run -e POSTGRES_PASSWORD=pyobo -p 5433:5432 -t -d --name $TMPIMAGENAME $TMPIMAGENAME
+docker container run -e POSTGRES_PASSWORD=$POSTGRES_PASSWORD -p $PORT:5432 -t -d --name $TMPIMAGENAME $TMPIMAGENAME
 
-python -m pip install -q pyobo
-python -m pyobo.database.sql.loader --uri postgresql+psycopg2://postgres:pyobo@localhost:5433/postgres
 python3 -m venv env
 source env/bin/activate
+python -m pip install --upgrade pip
+python -m pip install pyobo
+python -m pyobo.database.sql.loader --uri postgresql+psycopg2://postgres:$POSTGRES_PASSWORD@localhost:$PORT/postgres $TEST
 
 docker container commit $TMPIMAGENAME $IMAGENAME:$TAG
 docker container stop $TMPIMAGENAME
