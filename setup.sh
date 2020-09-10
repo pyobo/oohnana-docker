@@ -13,6 +13,8 @@ docker container run -e POSTGRES_PASSWORD=pyobo -p 5433:5432 -t -d --name $TMPIM
 
 python -m pip install -q pyobo
 python -m pyobo.database.sql.loader --uri postgresql+psycopg2://postgres:pyobo@localhost:5433/postgres
+python3 -m venv env
+source env/bin/activate
 
 docker container commit $TMPIMAGENAME $IMAGENAME:$TAG
 docker container stop $TMPIMAGENAME
